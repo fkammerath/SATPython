@@ -1,4 +1,6 @@
 import pandas 
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 ## cargar data
 filename = './tmdb_5000_movies.csv'
@@ -19,4 +21,9 @@ print(data.dtypes)
 ## duplicados
 print(data.duplicated().sum()) #no hya duplicados
 
+## peliculas con mas ingresos de box office
+top_movies = data.sort_values(by='revenue', ascending=False)
+print(top_movies.head(10)[['title', 'revenue']])
 
+sns.lmplot('revenue', 'budget',data = data)
+plt.show()
